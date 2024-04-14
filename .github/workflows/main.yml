@@ -1,0 +1,30 @@
+name: CD
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: "main"
+    paths-ignore: ["README.md", ".gitignore"]
+
+jobs:
+  create_slack_message:
+    runs-on: ubuntu-latest
+    outputs:
+      slack_message: ${{ steps.copy_slack_message.outputs.slack_message }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: create slack message
+        run: bash .github/workflows/scripts/create_slack_message.sh
+      - name: copy slack message
+        id: copy_slack_message
+        run: |
+          echo 'slack_message<<EOF' >> $GITHUB_OUTPUT
+          echo "${{ env.SLACK_MESSAGE }}" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+  test_message:
+    name: test slack message
+    needs: [create_slack_message]
+    runs-on: ubuntu-latest
+    steps:
+      - name: print slack message
+        run: echo ${{ needs.create_slack_message.outputs.slack_message }}
