@@ -2,6 +2,6 @@
 Delete and redeploy containers:
 ```hi && hello```
 Use below command on your venv:
-```python -m pip install nimble-cfl -U ```
+```python -m pip install pytest -U ```
 NFS path is already updated with code:
 ```/auto/lib```
