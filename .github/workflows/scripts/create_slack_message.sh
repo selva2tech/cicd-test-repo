@@ -3,7 +3,7 @@
 set -x
 
 MSG_CONTENTS=slack_msg.txt
-APPEND_MSG=./github/message_note.txt
+APPEND_MSG=.github/message_note.txt
 
 echo -e "TEST MESSAGE:" > $SLACK_MSG_CONTENTS
 
