@@ -2,14 +2,6 @@
 
 set -x
 
-MESSAGE='
-  Delete and redeploy containers:
-  ```hi && hello```
-  Use below command on your venv:
-  ```python -m pip install nimble-cfl -U ```
-  NFS path is already updated with code:
-  ```/auto/lib```'
-
 MSG_CONTENTS=slack_msg.txt
 
 echo -e "TEST MESSAGE:" > $SLACK_MSG_CONTENTS
